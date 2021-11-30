@@ -3,7 +3,9 @@ import livereload from "rollup-plugin-livereload";
 import babel from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import minify from 'rollup-plugin-babel-minify';
 import replace from '@rollup/plugin-replace';
+import conditional from "rollup-plugin-conditional";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -23,6 +25,8 @@ export default {
     }),
     babel({
       presets: ["@babel/preset-react"],
+      exclude:'node_modules/**',
+      babelHelpers: 'bundled'
     }),
     commonjs(),
     serve({
@@ -33,5 +37,10 @@ export default {
       port: 3000,
     }),
     livereload({ watch: "dist" }),
+    conditional(production, [
+      minify({
+        comments:false
+      })
+    ])
   ]
 };
