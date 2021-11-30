@@ -12,3 +12,4 @@ Fuentes:
 + https://www.npmjs.com/package/rollup-plugin-conditional
 + https://github.com/Comandeer/rollup-plugin-babel-minify
 + https://reactjs.org/docs/hooks-effect.html
++ https://www.freecodecamp.org/news/react-router-in-5-minutes/
