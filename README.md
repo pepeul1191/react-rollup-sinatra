@@ -13,3 +13,4 @@ Fuentes:
 + https://github.com/Comandeer/rollup-plugin-babel-minify
 + https://reactjs.org/docs/hooks-effect.html
 + https://www.freecodecamp.org/news/react-router-in-5-minutes/
++ https://stackoverflow.com/questions/42217579/data-binding-in-react

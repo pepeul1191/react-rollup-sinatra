@@ -20,10 +20,11 @@ export default function Login(){
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login/:user" element={<Index />} />
         <Route path="/login" element={<Index />} />
         <Route path="/login/sign-in" element={<SignIn />} />
         <Route path="/login/reset-password" element={<ResetPassword />} />
-        <Route path="*" element={<Redirect404 />} />
+        {/*<Route path="*" element={<Redirect404 />} />*/}
       </Routes>
     </BrowserRouter>
   );
