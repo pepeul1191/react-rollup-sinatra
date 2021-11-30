@@ -35,8 +35,8 @@ export default function Index(){
       </button>
       {/* FooTER LOGIN NAV */}
       <div className="link-login">
-        <Link to="/sign-in">Registrarse</Link>
-        <Link to="/reset-password" className="pull-right">Olvidó su Contraseña</Link>
+        <Link to="/login/sign-in">Registrarse</Link>
+        <Link to="/login/reset-password" className="pull-right">Olvidó su Contraseña</Link>
       </div>
       <p className="mt-5 mb-3 text-muted">Powered By <a href="http://softweb.pe/"> Softtware Web Perú</a> © 2017-2018</p>
     </form>

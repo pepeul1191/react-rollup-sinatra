@@ -17,11 +17,11 @@ export default function Login(){
   });
 
   return (
-    <BrowserRouter basename={'/login.html'}>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/sign-in" element={<ResetPassword />} />
-        <Route path="/reset-password" element={<SignIn />} />
+        <Route path="/login" element={<Index />} />
+        <Route path="/login/sign-in" element={<SignIn />} />
+        <Route path="/login/reset-password" element={<ResetPassword />} />
       </Routes>
     </BrowserRouter>
   );

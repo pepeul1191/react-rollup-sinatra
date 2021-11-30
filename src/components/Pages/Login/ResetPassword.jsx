@@ -27,11 +27,8 @@ export default function ResetPassword(){
       </button>
       {/* FooTER LOGIN NAV */}
       <div className="link-login">
-        <a className="" href="/login">
-          Ingresar
-        </a>
-        <Link to="/">Ingresar</Link>
-        <Link to="/sign-in" className="pull-right">Registrarse</Link>
+        <Link to="/login">Ingresar</Link>
+        <Link to="/login/sign-in" className="pull-right">Registrarse</Link>
       </div>
       <p className="mt-5 mb-3 text-muted">Powered By <a href="http://softweb.pe/"> Softtware Web Perú</a> © 2017-2018</p>
     </form>

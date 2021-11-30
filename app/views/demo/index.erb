@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carga de Archivos R/R</title>
+</head>
+<body>
+  <h4>Cargar de Archivos con Request / Response</h4>
+  <label id="message"></label><br>
+  <label for="name">Nombre</label><br>
+  <input type="text" name="name" id="txtName">
+  <input type="file" style="display: none;" name="fileUpload" id="demoFile">
+  <button id="btnFile">Seleccionar Archivo</button>
+  <button id="btnUpload">Subir Archivo</button>
+  <button id="btnViewFile">Ver Archivo</button><br><br>
+  <button id="btnSave">Grabar Registro</button><br>
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script>
+    $("#btnFile").click((e) => {
+      $("#demoFile").click();
+    });
+    $("#btnUpload").click((e) => {
+      $("#message").html("");
+      var form_data = new FormData();
+		  var file = $("#demoFile")[0].files[0];
+      if(file.type == "application/pdf"){
+        form_data.append('pictureFile', file);
+        $.ajax({
+          type: 'POST',
+          url: '/demo/picture/upload',
+          headers: { },
+          data: form_data,
+          //use contentType, processData for sure.
+          contentType: false,
+          processData: false,
+          async: false,
+          beforeSend: function() {
+          },
+          success: function(data) {
+            console.log(data)
+            $("#btnViewFile").attr("url", data);
+          },
+          error: function(xhr, status, error){
+            console.error(xhr.responseText);
+            $("#message").html("ocurrio un error en subir el archivo");
+          }
+        });
+      }else{
+        $("#message").html("extensión del archivo no válida");
+      }
+    });
+    $("#btnViewFile").click((e) => {
+      var win = window.open('/' + $("#btnViewFile").attr("url"), '_blank');
+      if (win) {
+        win.focus();
+      } else {
+        alert('Please allow popups for this website');
+      }
+    });
+    $("#btnSave").click((e) => {
+      $.ajax({
+        type: 'POST',
+        url: '/demo/save',
+        data: {
+          name: $("#txtName").val(),
+          url: $("#btnViewFile").attr("url"),
+        },
+        headers: {},
+        async: false,
+        success: function(data){
+
+        },
+        error: function(xhr, status, error){
+          // show message
+          if(xhr.status == 404){
+
+          }else if(xhr.status == 501){
+
+          }else{
+
+          }
+          console.error(error);
+          // return data
+          resp.message = JSON.parse(xhr.responseText);
+          resp.status = 500;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
