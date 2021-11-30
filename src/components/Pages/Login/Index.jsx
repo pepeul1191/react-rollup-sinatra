@@ -1,6 +1,5 @@
 import React, { useEffect }from 'react';
 import { Link } from 'react-router-dom';
-
 import './Index.css'
 
 export default function Index(){
@@ -36,6 +35,7 @@ export default function Index(){
       {/* FooTER LOGIN NAV */}
       <div className="link-login">
         <Link to="/login/sign-in">Registrarse</Link>
+        <Link to="/login/sign">Error XD</Link>
         <Link to="/login/reset-password" className="pull-right">Olvidó su Contraseña</Link>
       </div>
       <p className="mt-5 mb-3 text-muted">Powered By <a href="http://softweb.pe/"> Softtware Web Perú</a> © 2017-2018</p>

@@ -8,6 +8,7 @@ import './Login.css'
 import Index from '../../Pages/Login/Index.jsx'
 import ResetPassword from '../../Pages/Login/ResetPassword.jsx';
 import SignIn from '../../Pages/Login/SignIn.jsx';
+import Redirect404 from '../../Pages/Error/Redirect404.jsx';
 
 export default function Login(){
   const title = 'Bienvenido';
@@ -22,6 +23,7 @@ export default function Login(){
         <Route path="/login" element={<Index />} />
         <Route path="/login/sign-in" element={<SignIn />} />
         <Route path="/login/reset-password" element={<ResetPassword />} />
+        <Route path="*" element={<Redirect404 />} />
       </Routes>
     </BrowserRouter>
   );
