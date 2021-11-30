@@ -11,3 +11,4 @@ Fuentes:
 + https://github.com/babel/minify/blob/master/packages/babel-preset-minify/README.md#options
 + https://www.npmjs.com/package/rollup-plugin-conditional
 + https://github.com/Comandeer/rollup-plugin-babel-minify
++ https://reactjs.org/docs/hooks-effect.html
