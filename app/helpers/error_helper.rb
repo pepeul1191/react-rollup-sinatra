@@ -10,7 +10,7 @@ module Helpers
           #'assets/css/constants',
           #'assets/css/styles',
           #'assets/css/error',
-          'build/bundle.error',
+          'dist/bundle.error',
         ]
       else
         resp = [

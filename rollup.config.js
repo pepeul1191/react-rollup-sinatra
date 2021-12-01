@@ -96,4 +96,37 @@ export default [
       )
     ]
   },
+  {
+    input: "src/entries/error.js",
+    output: {
+      file: production ? 'public/dist/bundle.error.min.js' : 'public/dist/bundle.error.js', 
+      format: "iife",
+      sourcemap: true,
+    },
+    plugins: [
+      nodeResolve({
+        extensions: [".js"],
+      }),
+      replace({
+        'process.env.NODE_ENV': JSON.stringify( 'development' ),
+      }),
+      babel({
+        presets: ["@babel/preset-react"],
+        exclude:'node_modules/**',
+        babelHelpers: 'bundled'
+      }),
+      commonjs(),
+      css({ 
+        output: 'bundle.error.css' 
+      }),
+      // livereload({ watch: "dist" }), // websocket
+      conditional(
+        production, [
+          minify({
+            comments:false
+          })
+        ]
+      )
+    ]
+  },
 ];
