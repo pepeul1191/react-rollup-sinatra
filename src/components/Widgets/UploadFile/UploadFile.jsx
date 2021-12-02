@@ -3,7 +3,7 @@ import axios from 'axios';
 import './UploadFile.css';
 import random from '../../../helpers/random';
 
-class UploadFile extends React.Component {
+export default class UploadFile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -196,6 +196,3 @@ class UploadFile extends React.Component {
     </>)
   }
 }
-
-
-export default UploadFile;

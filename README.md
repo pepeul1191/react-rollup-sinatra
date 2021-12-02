@@ -1,4 +1,6 @@
 
+let value = (!this.state.value) ? this.state.value : '';
+
 ---
 
 Fuentes:
@@ -15,3 +17,4 @@ Fuentes:
 + https://www.freecodecamp.org/news/react-router-in-5-minutes/
 + https://stackoverflow.com/questions/42217579/data-binding-in-react
 + https://es.reactjs.org/docs/conditional-rendering.html
++ https://stackoverflow.com/questions/45720804/react-value-prop-on-input-should-not-be-null-for-some-input-but-not-othe
