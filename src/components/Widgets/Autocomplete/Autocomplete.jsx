@@ -42,6 +42,23 @@ export default class Autocomplete extends React.Component {
     //console.log(e);
   };
 
+  hintClick = (hintKeyP, hintValueP) => {
+    //console.log(hintKeyP, hintValueP)
+    this.setState({valueId:hintKeyP});
+    this.setState({value:hintValueP});
+    this.setState({valid:true});
+    this.setState({hints:[]});
+    this.setState({displayHints:false});
+    // if in table, dispatch to table observer
+    if(this.state.table){
+      /*dispatch('autocompleteHintClick', {
+        valueId: valueId,
+        rowId: rowId,
+        idKey: idKey,
+      });*/
+    }
+  };
+
   search = (e) => {
     // update value
     this.setState({value: e.target.value});  
@@ -94,6 +111,8 @@ export default class Autocomplete extends React.Component {
   };
   
   render() {
+    const hintKey = this.state.hintKey;
+    const hintValue = this.state.hintValue;
     return (<>
       <div ref={this.state.root}>
         {!this.state.table && 
@@ -110,7 +129,7 @@ export default class Autocomplete extends React.Component {
         />
         <ul className={`hint-container ${this.state.displayHints ? '' : 'd-none'}`} ref={this.state.ul} >
           {this.state.hints.map((hint) => 
-            <li key={random(20)} hint-id={hint['id']}>{hint.name}</li>
+            <li key={random(20)} hint-id={hint[hintKey]} onClick={() => this.hintClick(hint[hintKey], hint[hintValue])}>{hint[hintValue]}</li>
           )}
         </ul>
       </div>
