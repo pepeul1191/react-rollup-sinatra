@@ -5,7 +5,7 @@ module Helpers
       resp = []
       if constants[:static_env] == 'dev'
         resp = [
-          'build/bundle.app',
+          'dist/bundle.app',
         ]
       else
         resp = [
@@ -20,7 +20,7 @@ module Helpers
       if constants[:static_env] == 'dev'
         resp = [
           'vendor/bootstrap/bootstrap.bundle.min',
-          'build/bundle.app',
+          'dist/bundle.app',
         ]
       else
         resp = [

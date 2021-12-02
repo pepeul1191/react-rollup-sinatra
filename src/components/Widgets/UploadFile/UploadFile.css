@@ -1,0 +1,35 @@
+input[type="file"] {
+  display: none;
+}
+
+.btn-upload-table{
+  border: 0px;
+  background: transparent;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+}
+
+a{
+  text-decoration: none;
+}
+
+.btn-upload-table:hover{
+  cursor: pointer;
+}
+
+.btn-upload-table:disabled, .btn-upload-view:disabled{
+  color:#8895a1;
+}
+
+.btn-upload-table i{
+  margin-right:7px;
+}
+
+div .btn:not(:first-child) {
+  margin-left: 10px;
+}
+
+label{
+  margin-bottom:7px;
+}

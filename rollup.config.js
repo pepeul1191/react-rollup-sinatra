@@ -12,9 +12,9 @@ const production = !process.env.ROLLUP_WATCH;
 
 export default [
   {
-    input: "src/entries/index.js",
+    input: "src/entries/app.js",
     output: {
-      file: production ? 'public/dist/bundle.index.min.js' : 'public/dist/bundle.index.js', 
+      file: production ? 'public/dist/bundle.app.min.js' : 'public/dist/bundle.app.js', 
       format: "iife",
       sourcemap: true,
     },
@@ -39,7 +39,7 @@ export default [
         port: 3000,
       }),
       css({ 
-        output: 'bundle.index.css' 
+        output: 'bundle.app.css' 
       }),
       copy({
         targets: [

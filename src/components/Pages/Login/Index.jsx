@@ -1,10 +1,10 @@
-import React, { componentDidMount }from 'react';
+import React, { componentDidMount, useState }from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './Index.css'
 
 export default class Index extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       title: 'Bienvenido'
     }
