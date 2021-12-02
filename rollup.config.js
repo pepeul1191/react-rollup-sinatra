@@ -4,6 +4,7 @@ import babel from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import copy from 'rollup-plugin-copy';
+import json from '@rollup/plugin-json';
 import minify from 'rollup-plugin-babel-minify';
 import replace from '@rollup/plugin-replace';
 import conditional from "rollup-plugin-conditional";
@@ -19,8 +20,13 @@ export default [
       sourcemap: true,
     },
     plugins: [
+      // json for axios
+      json(),
       nodeResolve({
         extensions: [".js"],
+        jsnext: true, 
+        preferBuiltins: true, 
+        browser: true
       }),
       replace({
         'process.env.NODE_ENV': JSON.stringify( 'development' ),

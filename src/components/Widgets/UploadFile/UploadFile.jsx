@@ -1,4 +1,5 @@
 import React, { componentDidMount } from 'react';
+import axios from 'axios';
 import './UploadFile.css';
 import random from '../../../helpers/random';
 
@@ -10,6 +11,7 @@ class UploadFile extends React.Component {
       inputFileId: null,
       validationMessage: '',
       validationMessageClass: '',
+      url: 'upload',
       fileName: (props.fileName !== undefined) ? props.fileName : 'file',
       label: (props.label !== undefined) ? props.label : 'Seleccionar Archivo',
       urlFile: (props.urlFile !== undefined) ? props.urlFile : 'E',
@@ -116,7 +118,53 @@ class UploadFile extends React.Component {
   };
 
   uploadFile = () => {
-    alert('uploadFile');
+    var formData = new FormData();
+    formData.append(this.state.fileName, this.state.inputFile.current.files[0]);
+    let _this = this;
+    axios.post(`${this.state.url}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then(function (response) {
+      // handle success
+      // console.log(response);
+      _this.setState({urlFile: response.data});
+      if(_this.state.table){
+        /*launchAlert({
+          message: 'Se cargó el archivo con éxito',
+          type: 'success',
+          timeOut: 5000
+        });
+        dispatch('fileUploaded', {
+          urlFile: urlFile,
+          key: tableKeyURL,
+          tableRecordId: tableRecordId,
+          tableRecordKey: tableRecordKey,
+        });*/
+      }else{
+        _this.setState({validationMessage: 'Se cargó el archivo con éxito'});
+        _this.setState({validationMessageClass: 'text-success'});
+        setTimeout(() => _this.clearMessage(), 5000);
+      }
+      _this.setState({valid: true});
+      _this.setState({disabledView: false});
+    })
+    .catch(function (error) {
+      // handle error
+      console.error(error);
+      if(_this.state.table){
+        /*launchAlert({
+          message: 'Ocurrió un error en subir el archivo',
+          type: 'danger',
+          timeOut: 5000
+        });*/
+      }else{
+        _this.setState({validationMessage: 'Ocurrió un error en subir el archivo'});
+        _this.setState({validationMessageClass: 'text-danger'});
+      }
+      setTimeout(() => _this.clearMessage(), 5000);
+      _this.setState({valid: false});
+    });
   };
   
   render() {
