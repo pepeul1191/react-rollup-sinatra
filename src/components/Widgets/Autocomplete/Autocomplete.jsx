@@ -39,7 +39,59 @@ export default class Autocomplete extends React.Component {
   };
 
   keyDown = (e) => {
-    //console.log(e);
+    switch (e.key) {
+      case 'Escape':
+        this.setState({hints: []});
+        this.setState({displayHints: false});
+        break;
+      case 'ArrowUp':
+        console.log('arriba')
+        /*if(childHintActive >= 1){
+          if(childHintActive != -1){
+            ul.children[childHintActive].classList.remove('active')
+          }
+          childHintActive = childHintActive - 1;
+          ul.children[childHintActive].classList.add('active');
+        }else{
+          ul.firstChild.classList.remove('active');
+          childHintActive = ul.childNodes.length - 1;
+          ul.children[childHintActive].classList.add('active');
+        }*/
+        break;
+      case 'ArrowDown':
+        console.log('abajo')
+        /*if(childHintActive + 1 < ul.childNodes.length){
+          if(childHintActive != -1){
+            ul.children[childHintActive].classList.remove('active');
+          }
+          childHintActive = childHintActive + 1;
+          ul.children[childHintActive].classList.add('active');
+        }else{
+          ul.lastChild.classList.remove('active');
+          childHintActive = 0;
+          ul.children[childHintActive].classList.add('active');
+        }*/
+        break;
+      case 'Enter':
+        console.log('enter');
+        /*var li = ul.childNodes[childHintActive];
+        value = li.innerHTML;
+        valueId = li.getAttribute('hint-id');
+        valid = true;
+        hints = [];
+        displayHints = false;
+        // if in table, dispatch to table observer
+        if(table){
+          dispatch('autocompleteHintClick', {
+            valueId: valueId,
+            rowId: rowId,
+            idKey: idKey,
+          });
+        }*/
+        break;
+      default:
+        break;
+    }
   };
 
   hintClick = (hintKeyP, hintValueP) => {
