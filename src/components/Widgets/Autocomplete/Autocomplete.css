@@ -20,7 +20,7 @@
   font-weight: 300;
 }
 
-:global(ul li.active) {
+.hint-active {
   background: #ccc ;
 }
 

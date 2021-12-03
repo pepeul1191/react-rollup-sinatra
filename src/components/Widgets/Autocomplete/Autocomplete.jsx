@@ -45,49 +45,49 @@ export default class Autocomplete extends React.Component {
         this.setState({displayHints: false});
         break;
       case 'ArrowUp':
-        console.log('arriba')
-        /*if(childHintActive >= 1){
-          if(childHintActive != -1){
-            ul.children[childHintActive].classList.remove('active')
+        //console.log('arriba')
+        if(this.state.childHintActive >= 1){
+          if(this.state.childHintActive != -1){
+            Array.from(this.state.ul.current.children)[this.state.childHintActive].classList.remove('hint-active');
           }
-          childHintActive = childHintActive - 1;
-          ul.children[childHintActive].classList.add('active');
+          Array.from(this.state.ul.current.children)[this.state.childHintActive].classList.add('hint-active');
+          this.setState({childHintActive: this.state.childHintActive - 1});
         }else{
-          ul.firstChild.classList.remove('active');
-          childHintActive = ul.childNodes.length - 1;
-          ul.children[childHintActive].classList.add('active');
-        }*/
+          Array.from(this.state.ul.current.children)[0].classList.remove('hint-active');
+          Array.from(this.state.ul.current.children)[this.state.ul.current.childNodes.length - 1].classList.add('hint-active');
+          this.setState({childHintActive: this.state.ul.current.childNodes.length - 1});
+        }
         break;
       case 'ArrowDown':
-        console.log('abajo')
-        /*if(childHintActive + 1 < ul.childNodes.length){
-          if(childHintActive != -1){
-            ul.children[childHintActive].classList.remove('active');
+        //console.log('abajo')
+        if(this.state.childHintActive + 1 < Array.from(this.state.ul.current.children).length){
+          if(this.state.childHintActive != -1){
+            Array.from(this.state.ul.current.children)[this.state.childHintActive].classList.remove('hint-active');
           }
-          childHintActive = childHintActive + 1;
-          ul.children[childHintActive].classList.add('active');
+          Array.from(this.state.ul.current.children)[this.state.childHintActive + 1].classList.add('hint-active');
+          this.setState({childHintActive: this.state.childHintActive + 1});
         }else{
-          ul.lastChild.classList.remove('active');
-          childHintActive = 0;
-          ul.children[childHintActive].classList.add('active');
-        }*/
+          Array.from(this.state.ul.current.children)[this.state.ul.current.childNodes.length - 1].classList.remove('hint-active');
+          Array.from(this.state.ul.current.children)[0].classList.add('hint-active');
+          this.setState({childHintActive: 0});
+        }
         break;
       case 'Enter':
-        console.log('enter');
-        /*var li = ul.childNodes[childHintActive];
-        value = li.innerHTML;
-        valueId = li.getAttribute('hint-id');
-        valid = true;
-        hints = [];
-        displayHints = false;
+        //console.log('enter');
+        var li = this.state.ul.current.childNodes[this.state.childHintActive];
+        this.setState({value: li.innerHTML});
+        this.setState({valueId: li.getAttribute('hint-id')});
+        this.setState({valid: true});
+        this.setState({hints: []});
+        this.setState({displayHints: false});
         // if in table, dispatch to table observer
-        if(table){
-          dispatch('autocompleteHintClick', {
+        if(this.state.table){
+          /*dispatch('autocompleteHintClick', {
             valueId: valueId,
             rowId: rowId,
             idKey: idKey,
-          });
-        }*/
+          });*/
+        }
         break;
       default:
         break;
@@ -125,8 +125,9 @@ export default class Autocomplete extends React.Component {
         }
       })
       .then(function (response) {
-        _this.setState({displayHints: true})
-        //_this.setState({ul.setAttribute('style', `width: ${event.target.offsetWidth}px`)})
+        _this.setState({displayHints: true});
+        _this.setState({childHintActive: -1});
+        _this.state.ul.current.setAttribute('style', `width: ${e.target.offsetWidth}px`)
         _this.setState({hints: []})
         if(response.data.length == 0){
           _this.setState({validationMessage: 'No se encontraron coincidencias'})
@@ -181,7 +182,7 @@ export default class Autocomplete extends React.Component {
         />
         <ul className={`hint-container ${this.state.displayHints ? '' : 'd-none'}`} ref={this.state.ul} >
           {this.state.hints.map((hint) => 
-            <li key={random(20)} hint-id={hint[hintKey]} onClick={() => this.hintClick(hint[hintKey], hint[hintValue])}>{hint[hintValue]}</li>
+            <li key={random(20)} hint-id={hint[hintKey]} className="" onClick={() => this.hintClick(hint[hintKey], hint[hintValue])}>{hint[hintValue]}</li>
           )}
         </ul>
       </div>
